@@ -11,21 +11,6 @@ class Game
     @counter = 1
 
   end
-
-  def start
-
-    result = 'sometext'
-    while result != 'victory' || result != 'draw'
-
-    puts "Make your choice..."
-    board.mark_choice(gets.chomp)
-    board.display_board
-    @counter = 0 if @counter != 0
-    @counter = 1 if @counter == 0
-    end
-    puts result
-
-  end
 end
 
 class Board
@@ -34,22 +19,35 @@ class Board
     @turn = "X"
   end
 
-  def mark_choice(choice)
-    if @counter == 1
-      @turn == 'X'
+  def mark_choice(choice, counter)
+    puts counter
+    if counter == 1
+      @turn = 'X'
     else
-      @turn == 'O'
+      @turn = 'O'
     end
 
-    @board[choice] = "X" if @turn == 'X' 
-    @board[choice] = "O" if @turn == 'O'
+    @board[choice.to_sym] = "X" if @turn == 'X' 
+    @board[choice.to_sym] = "O" if @turn == 'O'
   end
 
   def display_board
-    puts "#{@board[:a1]} | #{@board[:a2]} | #{@board[:a3]} \n | #{@board[:b1]} | #{@board[:b2]} | #{@board[:b3]} \n | #{@board[:c1]} | #{@board[:c2]} | #{@board[:c3]} |"
+    puts " a| #{@board[:a1]} | #{@board[:a2]} | #{@board[:a3]} \n b| #{@board[:b1]} | #{@board[:b2]} | #{@board[:b3]} \n c| #{@board[:c1]} | #{@board[:c2]} | #{@board[:c3]} |"
   end
 end
 
 
 first_game = Game.new
-first_game.start
+board = Board.new
+
+
+  result = 'sometext'
+  while result != 'victory' || result != 'draw'
+
+  puts "Make your choice..."
+  board.mark_choice(gets.chomp, first_game.counter)
+  board.display_board
+  first_game.counter == 1 ? first_game.counter=0 : first_game.counter=1
+  end
+  puts result
+
