@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 class Game
   attr_accessor :counter
   puts "your turn..."
@@ -8,7 +9,22 @@ class Game
     puts "And your opponent name..."
     @player2 = gets.chomp
     @counter = 1
-    
+
+  end
+
+  def start
+
+    result = 'sometext'
+    while result != 'victory' || result != 'draw'
+
+    puts "Make your choice..."
+    board.mark_choice(gets.chomp)
+    board.display_board
+    @counter = 0 if @counter != 0
+    @counter = 1 if @counter == 0
+    end
+    puts result
+
   end
 end
 
@@ -34,12 +50,6 @@ class Board
   end
 end
 
-board = Board.new
-start = Game.new
-start
 
-puts "put your choice.."
-board.mark_choice(gets.chomp.to_sym)
-puts board.display_board
-
-
+first_game = Game.new
+first_game.start
