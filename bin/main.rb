@@ -61,11 +61,7 @@ class Board
   end
 end
 
-#
-# 1) que se vea mejor el board
-# 2) mejorar las frases
-# 3)
-#
+
 
 first_game = Game.new
 board = Board.new
@@ -76,7 +72,7 @@ first_game.set_player(player_1)
 puts "\n Okey, #{player_1}. Now tell me your opponent name..."
 player_2 = gets.chomp
 first_game.set_player(player_2)
-puts "\n Okey, #{player_1} & #{player_2}. {Some explanation on how to play goes here...a}Lets play.... "
+puts "\n Okey, #{player_1} & #{player_2}. In this Tic Tac Toe we write the letter a-b-c for the rows and 1-2-3 for the columns so first row, first column equals==a1, good luck"
 
 sleep 2.0
 
