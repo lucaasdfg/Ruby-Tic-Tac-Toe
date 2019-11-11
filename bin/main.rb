@@ -6,10 +6,10 @@ board = Board.new
 
 puts "\nHello. Welcome to Tic Tac Toe Game.\n\n Tell me your name..."
 player1 = gets.chomp
-first_game.set_player(player1)
+first_game.toset_player(player1)
 puts "\n Okey, #{player1}. Now tell me your opponent name..."
 player2 = gets.chomp
-first_game.set_player(player2)
+first_game.toset_player(player2)
 puts "\n Okey, #{player1} & #{player2}.Lets play...."
 puts "\n\nRULES:\n\n"
 puts 'First player starts with X, second with O.'
@@ -31,7 +31,7 @@ until board.check_result
   next unless board.check_valid_choice?(input_choice)
   board.mark_choice(input_choice, board.counter)
   board.display_board
-  board.set_counter
+  board.toset_counter
   break if board.check_result == true
 
 end
