@@ -30,6 +30,10 @@ we used classes and methods to write and make the game work
 3: select which cell with the letter of the row and the number of the column
 4: enjoy!
 
+# how to play
+you have to make a row or a column of the symbol you have is either O : X
+so to win you just need 3 of the same aligned in row column or diagonal
+
 
 @lucasdfg
 @alexawesomecode
