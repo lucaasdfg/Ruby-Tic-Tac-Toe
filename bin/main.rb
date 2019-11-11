@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 class Game
   attr_accessor :players
@@ -61,8 +62,6 @@ class Board
   end
 end
 
-
-
 first_game = Game.new
 board = Board.new
 
@@ -83,6 +82,7 @@ while board.result != 'victory' || board.result != 'draw'
   puts 'Mark your choice...'
   input_choice = gets.chomp.downcase
   next unless board.check_valid_choice?(input_choice)
+
   board.mark_choice(input_choice, board.counter)
   board.display_board
   board.counter = (board.counter == 1 ? 0 : 1)
