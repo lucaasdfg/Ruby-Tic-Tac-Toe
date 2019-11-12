@@ -5,7 +5,6 @@ require_relative '../lib/gamelogic.rb'
 first_game = Game.new
 board = Board.new
 
-
 puts "\nHello. Welcome to Tic Tac Toe Game.\n\n Tell me your name..."
 player1 = gets.chomp
 first_game.toset_player(player1)
