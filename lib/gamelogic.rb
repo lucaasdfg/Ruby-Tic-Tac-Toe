@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # rubocop:disable Metrics/LineLength
-
+# rubocop:disable Metrics/CyclomaticComplexity
 class Game
   attr_accessor :players
   def initialize
@@ -35,7 +35,7 @@ class Board
   end
 
   def display_board
-    puts "--------------------------\n\s\s\s\s a|\s #{@board[:a1]}\s |\s #{@board[:a2]}\s |\s #{@board[:a3]}\s |\n\s\s\s\s b|\s #{@board[:b1]}\s |\s #{@board[:b2]}\s |\s #{@board[:b3]}\s |\n\s\s\s\s c|\s #{@board[:c1]}\s |\s #{@board[:c2]}\s |\s #{@board[:c3]}\s | \n--------------------------"
+    "--------------------------\n\s\s\s\s a|\s #{@board[:a1]}\s |\s #{@board[:a2]}\s |\s #{@board[:a3]}\s |\n\s\s\s\s b|\s #{@board[:b1]}\s |\s #{@board[:b2]}\s |\s #{@board[:b3]}\s |\n\s\s\s\s c|\s #{@board[:c1]}\s |\s #{@board[:c2]}\s |\s #{@board[:c3]}\s | \n--------------------------"
   end
 
   def check_victory
@@ -45,7 +45,7 @@ class Board
 
       @result = 'victory'
     end
-    @result = 'draw' if @contador == 9
+    @result = @result != 'victory' ? 'draw' : 'victory' if @contador == 9
   end
 
   def check_valid_choice?(arg)
@@ -53,9 +53,7 @@ class Board
 
     return true if choice_dict.include?(arg) && @board[arg.to_sym] == ''
 
-    puts "\n\nINVALID CHOICE\n\n You can choose only EMPTY cells using letters & and numbers: a1, a2, b3, c4, etc.\n\n"
-    sleep 2.0
-    display_board
+    display_invalid_choice
   end
 
   def check_winner
@@ -72,3 +70,4 @@ class Board
   end
 end
 # rubocop:enable Metrics/LineLength
+# rubocop:enable Metrics/CyclomaticComplexity

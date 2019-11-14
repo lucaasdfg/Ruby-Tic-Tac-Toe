@@ -2,6 +2,14 @@
 
 require_relative '../lib/gamelogic.rb'
 
+def display_invalid_choice 
+    
+  puts "\n\nINVALID CHOICE\n\n You can choose only EMPTY cells using letters & and numbers: a1, a2, b3, c4, etc.\n\n"
+  sleep 2.0
+  puts display_board
+
+end
+
 first_game = Game.new
 board = Board.new
 
@@ -21,7 +29,7 @@ puts "\n\nGAME ON! "
 
 sleep 2.0
 
-board.display_board
+puts board.display_board
 
 
 until board.check_result
@@ -30,7 +38,7 @@ until board.check_result
   input_choice = gets.chomp.downcase
   next unless board.check_valid_choice?(input_choice)
   board.mark_choice(input_choice, board.counter)
-  board.display_board
+  puts board.display_board
   board.toset_counter
   break if board.check_result == true
 
@@ -40,7 +48,7 @@ end
 if board.result == 'victory'
 
   board.check_winner
-  board.display_board
+  puts board.display_board
   puts "\n\s\s\s\s!!!! Congrats #{board.winner == 'X' ? first_game.players[0] : first_game.players[1]}!"
   puts "\n\s\s\s\s     you WON. You truly are a WINNER !!!! \s\s\s\s\n"
 
@@ -48,7 +56,7 @@ end
 # rubocop:enable Metrics/LineLength
 
 if board.result == 'draw'
-  board.display_board
+  puts board.display_board
   puts 'DRAW'
 
 end
