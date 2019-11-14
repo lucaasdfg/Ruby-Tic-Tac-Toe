@@ -96,6 +96,6 @@ if $result == 'victory'
 end
 if $result == 'draw'
   # display draw
-  puts 'DRAW!'
+  puts 'DRAW!!'
   
 end
