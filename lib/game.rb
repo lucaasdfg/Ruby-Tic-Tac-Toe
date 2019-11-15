@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/LineLength
-# rubocop:disable Metrics/CyclomaticComplexity
 class Game
   attr_reader :result, :contador, :winner, :counter
 
@@ -23,10 +21,17 @@ class Game
   end
 
   def display_board
-    "--------------------------\n\s\s\s\s a|\s #{@board[:a1]}\s |\s #{@board[:a2]}\s |\s #{@board[:a3]}\s |\n\s\s\s\s b|\s #{@board[:b1]}\s |\s #{@board[:b2]}\s |\s #{@board[:b3]}\s |\n\s\s\s\s c|\s #{@board[:c1]}\s |\s #{@board[:c2]}\s |\s #{@board[:c3]}\s | \n--------------------------"
+    "
+    --------------------------
+    \s\s\s\s a|\s #{@board[:a1]}\s|\s #{@board[:a2]}\s |\s #{@board[:a3]}\s |
+    \s\s\s\s b|\s #{@board[:b1]}\s|\s #{@board[:b2]}\s |\s #{@board[:b3]}\s |
+    \s\s\s\s c|\s #{@board[:c1]}\s|\s #{@board[:c2]}\s |\s #{@board[:c3]}\s |
+    --------------------------
+    "
   end
 
   def check_victory
+    @result = @result != :VICTORY ? :DRAW : :VICTORY if @contador == 9
     winning_patterns = [
       [@board[:a1], @board[:a2], @board[:a3]],
       [@board[:b1], @board[:b2], @board[:b3]],
@@ -37,12 +42,10 @@ class Game
       [@board[:a1], @board[:b2], @board[:c3]],
       [@board[:a3], @board[:b2], @board[:c1]]
     ]
-    winning_patterns.each do |item|
-      next unless (item[0] == item[1]) && (item[1] == item[2]) && (item[2] == item[0]) && (item[0] != '')
 
-      @result = :VICTORY
+    winning_patterns.each do |item|
+      @result = :VICTORY if (item[0] == item[1]) && (item[1] == item[2]) && (item[2] == item[0]) && (item[0] != '')
     end
-    @result = @result != :VICTORY ? :DRAW : :VICTORY if @contador == 9
   end
 
   def check_valid_choice?(arg)
@@ -65,5 +68,3 @@ class Game
     @counter = (@counter == 1 ? 0 : 1)
   end
 end
-# rubocop:enable Metrics/LineLength
-# rubocop:enable Metrics/CyclomaticComplexity
