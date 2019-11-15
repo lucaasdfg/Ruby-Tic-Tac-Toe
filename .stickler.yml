@@ -1,3 +1,4 @@
+
 linters:
   rubocop:
     display_cop_names: true
@@ -11,4 +12,6 @@ files:
     - "db/*"
     - "config/*"
     - "Guardfile"
+
     - "Rakefile"
+
