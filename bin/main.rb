@@ -1,24 +1,23 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/gamelogic.rb'
+require_relative '../lib/game.rb'
+require_relative '../lib/players.rb'
 
 def display_invalid_choice 
     
   puts "\n\nINVALID CHOICE\n\n You can choose only EMPTY cells using letters & and numbers: a1, a2, b3, c4, etc.\n\n"
-  sleep 2.0
-  puts display_board
-
+  
 end
 
 first_game = Game.new
-board = Board.new
+players = Players.new
 
-puts "\nHello. Welcome to Tic Tac Toe Game.\n\n Tell me your name..."
+puts "\nHello. Welcome to Tic Tac Toe first_game.\n\n Tell me your name..."
 player1 = gets.chomp
-first_game.toset_player(player1)
+players.toset_player(player1)
 puts "\n Okey, #{player1}. Now tell me your opponent name..."
 player2 = gets.chomp
-first_game.toset_player(player2)
+players.toset_player(player2)
 puts "\n Okey, #{player1} & #{player2}.Lets play...."
 puts "\n\nRULES:\n\n"
 puts 'First player starts with X, second with O.'
@@ -29,34 +28,40 @@ puts "\n\nGAME ON! "
 
 sleep 2.0
 
-puts board.display_board
+puts first_game.display_board
 
 
-until board.check_result
+until first_game.check_result
 
   puts 'Mark your choice...'
   input_choice = gets.chomp.downcase
-  next unless board.check_valid_choice?(input_choice)
-  board.mark_choice(input_choice, board.counter)
-  puts board.display_board
-  board.toset_counter
-  break if board.check_result == true
+  if first_game.check_valid_choice?(input_choice)
+  first_game.mark_choice(input_choice, first_game.counter)
+  puts first_game.display_board
+  first_game.toset_counter
+  else
+    display_invalid_choice
+    sleep 2.0
+   puts first_game.display_board
+    
+  end
+  break if first_game.check_result == true
 
 end
 # rubocop:disable Metrics/LineLength
 
-if board.result == 'victory'
+if first_game.result == 'victory'
 
-  board.check_winner
-  puts board.display_board
-  puts "\n\s\s\s\s!!!! Congrats #{board.winner == 'X' ? first_game.players[0] : first_game.players[1]}!"
+  first_game.check_winner
+  puts first_game.display_board
+  puts "\n\s\s\s\s!!!! Congrats #{first_game.winner == 'X' ? players.players[0] : players.players[1]}!"
   puts "\n\s\s\s\s     you WON. You truly are a WINNER !!!! \s\s\s\s\n"
 
 end
 # rubocop:enable Metrics/LineLength
 
-if board.result == 'draw'
-  puts board.display_board
+if first_game.result == 'draw'
+  puts first_game.display_board
   puts 'DRAW'
 
 end
