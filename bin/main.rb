@@ -5,7 +5,7 @@ require_relative '../lib/players.rb'
 
 def display_invalid_choice 
     
-  puts "\n\nINVALID CHOICE\n\n You can choose only EMPTY cells using letters & and numbers: a1, a2, b3, c4, etc.\n\n"
+  puts "\n\nINVALID CHOICE\n\n You can choose only EMPTY cells using letters & numbers: a1, a2, b3, c4, etc.\n\n"
   
 end
 
@@ -50,17 +50,17 @@ until first_game.check_result
 end
 # rubocop:disable Metrics/LineLength
 
-if first_game.result == 'victory'
+if first_game.result == :VICTORY
 
   first_game.check_winner
   puts first_game.display_board
-  puts "\n\s\s\s\s!!!! Congrats #{first_game.winner == 'X' ? players.players[0] : players.players[1]}!"
+  puts "\n\s\s\s\s!!!! Congrats #{first_game.winner == :X ? players.players[0] : players.players[1]}!"
   puts "\n\s\s\s\s     you WON. You truly are a WINNER !!!! \s\s\s\s\n"
 
 end
 # rubocop:enable Metrics/LineLength
 
-if first_game.result == 'draw'
+if first_game.result == :DRAW
   puts first_game.display_board
   puts 'DRAW'
 
