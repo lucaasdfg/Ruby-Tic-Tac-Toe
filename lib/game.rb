@@ -44,7 +44,7 @@ class Game
     ]
 
     winning_patterns.each do |item|
-      @result = :VICTORY if (item[0] == item[1]) && (item[1] == item[2]) && (item[2] == item[0]) && (item[0] != '')
+      @result = :VICTORY if item.all?(:X) || item.all?(:O)
     end
   end
 
