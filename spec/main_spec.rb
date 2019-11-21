@@ -3,8 +3,9 @@ require_relative '../lib/players.rb'
 
 describe Game do
   let(:first_game) { Game.new }
-  let(:empty_board) { [["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""], ["", "", ""]]
- }
+  let(:empty_board) do
+    [['', '', ''], ['', '', ''], ['', '', ''], ['', '', ''], ['', '', ''], ['', '', ''], ['', '', ''], ['', '', '']]
+  end
 
   context 'test initialize values of object with class first_game' do
     it 'starts turn with X' do
@@ -35,7 +36,6 @@ describe Game do
   end
 
   describe '#mark_choice' do
-   
     it 'raise error when no parameter is given' do
       expect { first_game.mark_choice }.to raise_error(ArgumentError)
     end
@@ -51,49 +51,43 @@ describe Game do
     end
   end
 
-  describe "#check_victory" do 
-    it "return empty array when cells in board are empty" do
+  describe '#check_victory' do
+    it 'return empty array when cells in board are empty' do
       expect(first_game.check_victory).to eql(empty_board)
     end
-    it "when contador = 9  changes result to draw" do
+    it 'when contador = 9  changes result to draw' do
       first_game.contador = 9
       first_game.check_victory
       expect(first_game.result).to eql(:DRAW)
     end
-    it "changes resut variable to victory when finds a winning patern" do
-      first_game.board = {a1: :X, a2: :X, a3: :X}
-      first_game.check_victory 
+    it 'changes resut variable to victory when finds a winning patern' do
+      first_game.board = { a1: :X, a2: :X, a3: :X }
+      first_game.check_victory
       expect(first_game.result).to eql(:VICTORY)
-      
     end
-end
-describe "#check_winner" do
-    it "check winner es igual a turn cuando llamas al metodo check winner la variable winner es igual a turn"  do
-     winner = first_game.check_winner
-     expect(winner).to eql(:X)
   end
-
+  describe '#check_winner' do
+    it 'check winner to eql X' do
+      winner = first_game.check_winner
+      expect(winner).to eql(:X)
+    end
+  end
 end
-end
-
-
-
 
 describe Players do
-let(:players) { Players.new }
+  let(:players) { Players.new }
 
-describe "#toset_player" do
-    it "cuando llamas a toset player en la variable player el argumento que se pasa" do
-     players.toset_player("lucas")
-     testcase = players.players.include?("lucas") ? true : false
-     expect(testcase).to be true
-end
-end
+  describe '#toset_player' do
+    it 'when you call tosetplayer changes players array to include name' do
+      players.toset_player('lucas')
+      testcase = players.players.include?('lucas') ? true : false
+      expect(testcase).to be true
+    end
+  end
 
-describe "#initialize" do
-  it  "cuando creas un nuevo objeto con la clase game una variable players que es igual empty array" do
-   expect(players.players).to eql([])
-end
-
-end
+  describe '#initialize' do
+    it 'when you create object it starts with empy players array' do
+      expect(players.players).to eql([])
+    end
+  end
 end
