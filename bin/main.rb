@@ -5,9 +5,10 @@ require_relative '../lib/players.rb'
 
 def display_invalid_choice 
     
-  puts "\n\nINVALID CHOICE\n\n You can choose only EMPTY cells using letters & numbers: a1, a2, b3, c4, etc.\n\n"
+   "\n\nINVALID CHOICE\n\n You can choose only EMPTY cells using letters & numbers: a1, a2, b3, c4, etc.\n\n"
   
 end
+
 
 first_game = Game.new
 players = Players.new
@@ -40,7 +41,7 @@ until first_game.check_result
   puts first_game.display_board
   first_game.toset_counter
   else
-    display_invalid_choice
+    puts display_invalid_choice
     sleep 2.0
    puts first_game.display_board
     
@@ -65,3 +66,4 @@ if first_game.result == :DRAW
   puts 'DRAW'
 
 end
+
