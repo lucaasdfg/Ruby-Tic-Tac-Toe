@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Game
-  attr_reader :result, :contador, :winner, :counter
+  attr_writer :board, :contador, :counter
+  attr_reader :result, :contador, :winner, :counter, :board, :turn
+
 
   def initialize
     @board = { a1: '', a2: '', a3: '', b1: '', b2: '', b3: '', c1: '', c2: '', c3: '' }
