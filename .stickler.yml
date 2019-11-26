@@ -12,3 +12,6 @@ files:
     - "db/*"
     - "config/*"
     - "Guardfile"
+
+    - "Rakefile"
+
